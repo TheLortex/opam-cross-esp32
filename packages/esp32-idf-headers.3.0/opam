@@ -1,8 +1,9 @@
-opam-version: "1.2"
+opam-version: "2.0"
 maintainer: "Lucas Pluvinage <lucas.pluvinage@ens.fr>"
 authors: ["Lucas Pluvinage <lucas.pluvinage@ens.fr>"]
 depends: [
-"gcc-toolchain-esp32"
+  "gcc-toolchain-esp32" { os = "linux" }
+  "macos-toolchain-esp32" { os != "linux" }
 ]
 substs: ["Makefile"]
 build: []
