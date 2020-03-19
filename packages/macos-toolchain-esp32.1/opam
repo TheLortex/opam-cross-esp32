@@ -1,0 +1,9 @@
+opam-version: "1"
+maintainer: "Ioana Cristescu <ioana@tarides.com>"
+install: [
+    ["mkdir" "-p" "%{prefix}%/xtensa-esp32-elf"]
+    ["sh" "-c" "mv * %{prefix}%/xtensa-esp32-elf/"]
+    ["sh" "-c" "ln -s %{prefix}%/xtensa-esp32-elf/bin/* %{bin}%"]
+    ["sh" "-c" "cd %{prefix}%/xtensa-esp32-elf/ && rm -f toolchain-esp32-osx-*.env toolchain-esp32-osx-*.info toolchain-esp32-osx-*.err toolchain-esp32-osx-*.out"]
+]
+available: [ os = "macos" ]

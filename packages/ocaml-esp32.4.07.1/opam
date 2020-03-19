@@ -1,12 +1,11 @@
-opam-version: "1.2"
+opam-version: "2.0"
 maintainer:   "Lucas Pluvinage <lucas.pluvinage@ens.fr>"
 substs: [ "esp32.conf" ]
 build: [
     [ "sh" "./configure" "-target" "xtensa-esp32-elf" "-target-bindir" "%{prefix}%/esp32-sysroot/bin" "-prefix" "%{prefix}%/esp32-sysroot" "-lto" "-flambda" ]
     [ make "world-cross" "-j8"]
 ]
-available: [ ocaml-version >= "4.07" & ocaml-version < "4.08" ]
-install: [ 
+install: [
     [ make "install-cross" ]
     ["sh" "./install.sh" "%{prefix}%"]
 ]
@@ -14,6 +13,9 @@ remove: [
     [ "rm" "-rf" "%{prefix}%/esp32-sysroot" ]
 ]
 depends: [
-    "gcc-toolchain-esp32"
-    "ocamlfind"
+  "gcc-toolchain-esp32" { os = "linux" }
+  "macos-toolchain-esp32" { os != "linux" }
+  "ocamlfind"
+  "ocaml" {>= "4.07" & < "4.08" }
 ]
+synopsis: "Ocaml for esp32"
